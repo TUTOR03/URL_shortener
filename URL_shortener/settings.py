@@ -139,3 +139,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
+
+UNIQUE_VISIT_CALLDOWN = {
+    'seconds':30
+}

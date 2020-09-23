@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 			'email'
 		]
 
-class Short_URLSerializer(serializers.ModelSerializer):
+class CreateShortURLSerializer(serializers.ModelSerializer):
 	class Meta:
 		model =  models.Short_URL
 		fields = [
@@ -19,7 +19,7 @@ class Short_URLSerializer(serializers.ModelSerializer):
 			'name'
 		]
 
-class List_Short_URLSerializer(serializers.ModelSerializer):
+class ShortURLSerializer(serializers.ModelSerializer):
 	all_visits = serializers.SerializerMethodField()
 	created = serializers.DateTimeField(format = "%d.%m.%y %H:%M:%S", read_only = True)
 	class Meta:
