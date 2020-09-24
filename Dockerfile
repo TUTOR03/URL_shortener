@@ -9,6 +9,8 @@ ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
+RUN apt update && apt install netcat -y
 # copy project
 COPY . .
 RUN python manage.py collectstatic --noinput
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
