@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  web:
+    build: .
+    command: gunicorn URL_shortener.wsgi:application --bind 0.0.0.0:8002
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - 8002:8002
+    depends_on:
+      - db
+  db:
+    image: postgres:alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=zo.h0906023
+      - POSTGRES_DB=django_short_url
+volumes:
+  postgres_data:

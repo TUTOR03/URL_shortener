@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hwhbz$2#s@a1vanup88lh1)m5c)n+o02k6kv__e06e4vd6u3et'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','80.240.25.179']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -93,10 +93,10 @@ WSGI_APPLICATION = 'URL_shortener.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_short_url',
-        'USER': 'postgres',
-        'PASSWORD': 'zo.h0906023',
-        'HOST': 'db',
+        'NAME': 'postgres',
+        'USER': 'short_url',
+        'PASSWORD': 'zo.h0906',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
