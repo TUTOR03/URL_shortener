@@ -103,9 +103,11 @@ def CreateURLAPIView(request):
 			url = Short_URL.objects.create(base_url = serializer['base_url'], name = serializer.get('name'), user = request.user, short_url = sha_hash)
 		else:
 			url = Short_URL.objects.create(base_url = serializer['base_url'], short_url = sha_hash)
+
+		n_serizlizer = ShortURLSerializer(url)
+		return Response(n_serializer.data,status = status.HTTP_200_OK)
 	else:
 		return Response({'error':serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
-	return Response(status = status.HTTP_200_OK)
 
 @api_view(['POST'])
 @permission_classes([~permissions.IsAuthenticated])
