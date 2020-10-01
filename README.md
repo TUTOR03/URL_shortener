@@ -123,3 +123,39 @@ Get all your URLs\
     }
 ]
  ```
+## Single URL
+Get/Change/Delete your URL\
+`GET|PUT|DELETE /list_url/<str:short_url>`
+* Headers:\
+  | Key           | Value              | Description   |
+  | ------------- | ------------------ | ------------- |
+  | `Authorization` | `token <str:token>`  | Required      |
+__GET:__
+* Return data:\
+  Return `Short_URL` object
+```json
+"base_url": "https://example_url.com/",
+"name": "my beautiful url",
+"short_url": "aa70435",
+"active": true,
+"created": "26.09.20 01:39:28",
+"all_visits": 0
+```
+__DELETE:__\
+Just delete `Short_URL` object\
+__PUT:__
+* Data:
+  | Key           |         Value |  Description |
+  | ------------- | ------------- | -------------|
+  | `active`      | `<boolean:active>`  |     Optional |
+  | `name`      | `<str:name>`  |     Optional |
+* Return data:\
+  Return changed `Short_URL` object
+```json
+"base_url": "https://example_url.com/",
+"name": "my beautiful url",
+"short_url": "aa70435",
+"active": true,
+"created": "26.09.20 01:39:28",
+"all_visits": 0
+```
