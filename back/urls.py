@@ -10,5 +10,5 @@ urlpatterns = [
 	path('create_url', views.CreateURLAPIView, name = 'URLCreate'),
 	path('list_url', views.ListURLAPIView.as_view(), name = 'URLList'),
 	path('list_url/<short_url>', views.SingleURLAPIView.as_view(), name = 'Update'),
-	path('list_url/<short_url>/graph/<int:days>', views.URLGraphAPIView, name = 'URLGraph')
+	path('list_url/<short_url>/graph', views.URLGraphAPIView, name = 'URLGraph')
 ]

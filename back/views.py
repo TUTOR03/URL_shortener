@@ -34,13 +34,13 @@ class SingleURLAPIView(generics.RetrieveUpdateDestroyAPIView):
 	def get_queryset(self):
 		return Short_URL.objects.filter(user = self.request.user, short_url = self.kwargs['short_url'])
 
-@api_view(['GET'])
+@api_view(['POST'])
 @permission_classes([permissions.IsAuthenticated])
-def URLGraphAPIView(request, short_url, days):
+def URLGraphAPIView(request, short_url):
 	url = Short_URL.objects.filter(user = request.user, short_url = short_url)
 	if(url.exists()):
 		url = url.first()
-		days = str(days)
+		days = str(request.data.get('days','1'))
 		base_datetime = {
 			'30':60,
 			'1':24,
@@ -52,12 +52,15 @@ def URLGraphAPIView(request, short_url, days):
 				now().strftime(str_format)
 			except:
 				str_format = '%H:%M:%S %d.%m.%Y'
-			queryset = list(map(lambda ob:ob.datetime,list(filter(lambda ob:ob.datetime+timedelta(days = int(days))>=now(),URL_Visit.objects.filter(url = url).order_by('datetime')))))
-			data = [[0,(queryset[0]+timedelta(hours = int(days)*24//base_datetime[days])*(1+i)).strftime(str_format)] for i in range(base_datetime[days])]
-			for t in queryset:
-				tt = (t - queryset[0])//timedelta(hours = int(days)*24//base_datetime[days])
-				data[tt][0]+=1
-			return Response(data, status = status.HTTP_200_OK)
+			queryset = list(filter(lambda ob:ob.datetime+timedelta(days = int(days))>=now(),URL_Visit.objects.filter(url = url).order_by('datetime')))
+			queryset = list(map(lambda ob:ob.datetime,queryset))
+			if(queryset):
+				data = [[0,(queryset[0]+timedelta(hours = int(days)*24//base_datetime[days])*(1+i)).strftime(str_format)] for i in range(base_datetime[days])]
+				for t in queryset:
+					tt = (t - queryset[0])//timedelta(hours = int(days)*24//base_datetime[days])
+					data[tt][0]+=1
+				return Response(data, status = status.HTTP_200_OK)
+			return Response([], status = status.HTTP_200_OK)
 		return Response(status = status.HTTP_400_BAD_REQUEST)
 	return Response(status = status.HTTP_400_BAD_REQUEST)
 
