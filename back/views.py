@@ -104,7 +104,7 @@ def CreateURLAPIView(request):
 		else:
 			url = Short_URL.objects.create(base_url = serializer['base_url'], short_url = sha_hash)
 
-		n_serizlizer = ShortURLSerializer(url)
+		n_serializer = ShortURLSerializer(url)
 		return Response(n_serializer.data,status = status.HTTP_200_OK)
 	else:
 		return Response({'error':serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
