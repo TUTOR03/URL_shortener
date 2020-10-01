@@ -13,3 +13,80 @@ docker-compose up -d --build
 ```
 Also you need to configure the `url_shortener.conf` and put it into `etc/nginx/sites-enabled/`
 ## API Documentation
+\* - mean optional
+## Redirect URL
+Redirect you to real url\
+\
+`GET /:short_url`
+* URL Params:\
+      No
+* DATA:\
+      No
+## Registration
+Register an account\
+\
+`POST /register`
+* Data:
+  | Key           |         Value |  Description |
+  | ------------- | ------------- | -------------|
+  | `username`      | `<str:username>`  |     Required |
+  | `password`      | `<str:password>`  |     Required |
+* Return data:\
+Return your unique `token`\
+```json
+"token" : "some-data"
+```
+## Login
+Login to your account\
+\
+`POST /login`
+* Data:
+  | Key           |         Value |  Description |
+  | ------------- | ------------- | -------------|
+  | `username`      | `<str:username>`  |     Required |
+  | `password`      | `<str:password>`  |     Required |
+* Return data:\
+Return your unique `token`\
+```json
+"token" : "some-data"
+```
+## Logout
+Delete your unique `token`\
+\
+`POST /logout`
+* Headers:\
+  | Key           | Value              | Description   |
+  | ------------- | ------------------ | ------------- |
+  | `Authorization` | `token <str:token>`  | Required      |
+## Create URL
+Create `Short_URL` object from `base_url`\
+\
+`POST /create_url`
+* Headers:\
+  | Key           | Value              | Description   |
+  | ------------- | ------------------ | ------------- |
+  | `Authorization` | `token <str:token>`  | Optional      |
+* Data:
+  | Key           |         Value |  Description |
+  | ------------- | ------------- | -------------|
+  | `base_url`      | `<url:base_url>`  |     Required |
+  | `name`      | `<str:name>`  |     Optional |
+ * Return data:\
+Return `Short_URL` object
+```json
+"base_url": "https://example_url.com/",
+"name": "my beautiful url",
+"short_url": "aa70435",
+"active": true,
+"created": "26.09.20 01:39:28",
+"all_visits": 0
+```
+## List URLs
+Get all your URLs\
+\
+`GET /list_url`
+* Headers:\
+  | Key           | Value              | Description   |
+  | ------------- | ------------------ | ------------- |
+  | `Authorization` | `token <str:token>`  | Required      |
+* URL params:\
