@@ -90,3 +90,36 @@ Get all your URLs\
   | ------------- | ------------------ | ------------- |
   | `Authorization` | `token <str:token>`  | Required      |
 * URL params:\
+  For more information check [REST Framework filters](https://www.django-rest-framework.org/api-guide/filtering/)
+  ```json
+  "filter_fields" : ["name", "created", "base_url", "short_url", "active"],
+  "ordering_fields" : ["name", "created", "base_url", "short_url"]
+  "search_fields" : ["base_url", "short_url", "name"]
+  ```
+  | Key           | Value              | Description   |
+  | ------------- | ------------------ | ------------- |
+  | `filter_fields` | `<str:filter_fields>`  | Optional      |
+  | `ordering_fields` | `<str:ordering_fields>`  | Optional      |
+  | `search_fields` | `<str:search_fields>`  | Optional      |
+ * Return data:\
+ Return your URLs based on filters\
+ ```json
+ [
+    {
+        "base_url": "https://example_url.com/",
+        "name": "my beautiful url again",
+        "short_url": "aa70435",
+        "active": true,
+        "created": "26.09.20 01:39:28",
+        "all_visits": 0
+    },
+    {
+        "base_url": "https://example_url.com/",
+        "name": "e360d6d",
+        "short_url": "e360d6d",
+        "active": true,
+        "created": "24.09.20 18:12:08",
+        "all_visits": 3
+    }
+]
+ ```
