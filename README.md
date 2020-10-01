@@ -142,6 +142,7 @@ __GET:__
 "all_visits": 0
 ```
 __DELETE:__\
+\
 Just delete `Short_URL` object\
 __PUT:__
 * Data:
@@ -159,3 +160,20 @@ __PUT:__
 "created": "26.09.20 01:39:28",
 "all_visits": 0
 ```
+## Data for graph
+Get data for building graph based on the time period/
+`POST /list_url/<str:short_url>/graph`
+* Headers:\
+  | Key           | Value              | Description   |
+  | ------------- | ------------------ | ------------- |
+  | `Authorization` | `token <str:token>`  | Required      |
+* Data:\
+    | Key           | Value              | Description   |
+  | ------------- | ------------------ | ------------- |
+  | `days` | `<int:days>`  | Required      |
+* Return data:\
+  Return point coordinates based on the period
+```json
+
+```
+
