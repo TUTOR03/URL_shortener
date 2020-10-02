@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'hwhbz$2#s@a1vanup88lh1)m5c)n+o02k6kv__e06e4vd6u3et'
+SECRET_KEY = 'your_secret_key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0','80.240.25.179']
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -95,7 +95,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'django_short_url',
         'USER': 'postgres',
-        'PASSWORD': 'zo.h0906023',
+        'PASSWORD': '',
         'HOST': 'db',
         'PORT': '5432',
     }
