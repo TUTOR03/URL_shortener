@@ -19,10 +19,6 @@ Also you need to configure the `url_shortener.conf` and put it into `etc/nginx/s
 Redirect you to real url\
 \
 `GET /:short_url`
-* URL Params:\
-      No
-* DATA:\
-      No
 ## Registration
 Register an account\
 \
@@ -33,7 +29,7 @@ Register an account\
   | `username`      | `<str:username>`  |     Required |
   | `password`      | `<str:password>`  |     Required |
 * Return data:\
-Return your unique `token`\
+Return your unique `token`
 ```json
 "token" : "some-data"
 ```
@@ -46,8 +42,8 @@ Login to your account\
   | ------------- | ------------- | -------------|
   | `username`      | `<str:username>`  |     Required |
   | `password`      | `<str:password>`  |     Required |
-* Return data:\
-Return your unique `token`\
+* Return data:
+Return your unique `token`
 ```json
 "token" : "some-data"
 ```
@@ -55,7 +51,7 @@ Return your unique `token`\
 Delete your unique `token`\
 \
 `POST /logout`
-* Headers:\
+* Headers:
   | Key           | Value              | Description   |
   | ------------- | ------------------ | ------------- |
   | `Authorization` | `token <str:token>`  | Required      |
@@ -63,7 +59,7 @@ Delete your unique `token`\
 Create `Short_URL` object from `base_url`\
 \
 `POST /create_url`
-* Headers:\
+* Headers:
   | Key           | Value              | Description   |
   | ------------- | ------------------ | ------------- |
   | `Authorization` | `token <str:token>`  | Optional      |
@@ -72,7 +68,7 @@ Create `Short_URL` object from `base_url`\
   | ------------- | ------------- | -------------|
   | `base_url`      | `<url:base_url>`  |     Required |
   | `name`      | `<str:name>`  |     Optional |
- * Return data:\
+ * Return data:
 Return `Short_URL` object
 ```json
 "base_url": "https://example_url.com/",
@@ -86,11 +82,11 @@ Return `Short_URL` object
 Get all your URLs\
 \
 `GET /list_url`
-* Headers:\
+* Headers:
   | Key           | Value              | Description   |
   | ------------- | ------------------ | ------------- |
   | `Authorization` | `token <str:token>`  | Required      |
-* URL params:\
+* URL params:
   For more information check [REST Framework filters](https://www.django-rest-framework.org/api-guide/filtering/)
   ```json
   "filter_fields" : ["name", "created", "base_url", "short_url", "active"],
@@ -102,7 +98,7 @@ Get all your URLs\
   | `filter_fields` | `<str:filter_fields>`  | Optional      |
   | `ordering_fields` | `<str:ordering_fields>`  | Optional      |
   | `search_fields` | `<str:search_fields>`  | Optional      |
- * Return data:\
+ * Return data:
  Return your URLs based on filters\
  ```json
  [
@@ -127,12 +123,12 @@ Get all your URLs\
 ## Single URL
 Get/Change/Delete your URL\
 `GET|PUT|DELETE /list_url/<str:short_url>`
-* Headers:\
+* Headers:
   | Key           | Value              | Description   |
   | ------------- | ------------------ | ------------- |
   | `Authorization` | `token <str:token>`  | Required      |
 __GET:__
-* Return data:\
+* Return data:
   Return `Short_URL` object
 ```json
 "base_url": "https://example_url.com/",
@@ -151,7 +147,7 @@ __PUT:__
   | ------------- | ------------- | -------------|
   | `active`      | `<boolean:active>`  |     Optional |
   | `name`      | `<str:name>`  |     Optional |
-* Return data:\
+* Return data:
   Return changed `Short_URL` object
 ```json
 "base_url": "https://example_url.com/",
@@ -164,11 +160,11 @@ __PUT:__
 ## Data for graph
 Get data for building graph based on the time period/
 `POST /list_url/<str:short_url>/graph`
-* Headers:\
+* Headers:
   | Key           | Value              | Description   |
   | ------------- | ------------------ | ------------- |
   | `Authorization` | `token <str:token>`  | Required      |
-* Data:\
+* Data:
     | Key           | Value              | Description   |
   | ------------- | ------------------ | ------------- |
   | `days` | `<int:days>`  | Required      |
