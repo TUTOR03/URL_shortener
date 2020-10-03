@@ -86,7 +86,7 @@ Get all your URLs\
   | Key           | Value              | Description   |
   | ------------- | ------------------ | ------------- |
   | `Authorization` | `token <str:token>`  | Required      |
-* URL params:
+* URL params:\
   For more information check [REST Framework filters](https://www.django-rest-framework.org/api-guide/filtering/)
   ```json
   "filter_fields" : ["name", "created", "base_url", "short_url", "active"],
@@ -98,8 +98,8 @@ Get all your URLs\
   | `filter_fields` | `<str:filter_fields>`  | Optional      |
   | `ordering_fields` | `<str:ordering_fields>`  | Optional      |
   | `search_fields` | `<str:search_fields>`  | Optional      |
- * Return data:
- Return your URLs based on filters\
+ * Return data:\
+ Return your URLs based on filters
  ```json
  [
     {
@@ -139,7 +139,6 @@ __GET:__
 "all_visits": 0
 ```
 __DELETE:__\
-\
 Just delete `Short_URL` object\
 __PUT:__
 * Data:
