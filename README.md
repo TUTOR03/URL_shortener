@@ -42,7 +42,7 @@ Login to your account\
   | ------------- | ------------- | -------------|
   | `username`      | `<str:username>`  |     Required |
   | `password`      | `<str:password>`  |     Required |
-* Return data:
+* Return data:\
 Return your unique `token`
 ```json
 "token" : "some-data"
@@ -68,7 +68,7 @@ Create `Short_URL` object from `base_url`\
   | ------------- | ------------- | -------------|
   | `base_url`      | `<url:base_url>`  |     Required |
   | `name`      | `<str:name>`  |     Optional |
- * Return data:
+ * Return data:\
 Return `Short_URL` object
 ```json
 "base_url": "https://example_url.com/",
@@ -128,7 +128,7 @@ Get/Change/Delete your URL\
   | ------------- | ------------------ | ------------- |
   | `Authorization` | `token <str:token>`  | Required      |
 __GET:__
-* Return data:
+* Return data:\
   Return `Short_URL` object
 ```json
 "base_url": "https://example_url.com/",
@@ -146,7 +146,7 @@ __PUT:__
   | ------------- | ------------- | -------------|
   | `active`      | `<boolean:active>`  |     Optional |
   | `name`      | `<str:name>`  |     Optional |
-* Return data:
+* Return data:\
   Return changed `Short_URL` object
 ```json
 "base_url": "https://example_url.com/",
