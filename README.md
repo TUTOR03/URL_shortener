@@ -1,6 +1,6 @@
 # URL_shortener
 ### This is URL shortener API build with django and rest-framework. It allows you to see unique visits and get data for building graphs.
-### You can test it here [my server](http://80.240.25.179:8000/)
+### You can test it here [80.240.25.179:8000/api](http://80.240.25.179:8000/)
 ## Instalation
 To set up the API use `docker`. Firstly create a `virtualenv` and install all requirements.
 ```bash
