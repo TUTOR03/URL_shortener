@@ -21,7 +21,7 @@ class ListURLAPIView(generics.ListAPIView):
 		filterset_fields = ['name','created','base_url','short_url','active']
 		ordering_fields = ['name','created','base_url','short_url','active']
 		search_fields = ['base_url', 'short_url', 'name']
-
+		
 		def get_queryset(self):
 			return Short_URL.objects.filter(user = self.request.user).order_by('-created')
 
@@ -96,6 +96,7 @@ def CreateURLAPIView(request):
 		temp_q = Short_URL.objects.filter(short_url = sha_hash)
 		if(temp_q.exists()):
 			temp_q.first().delete()
+	sha_hash = f'ts-{sha_hash}'
 	serializer = CreateShortURLSerializer(data = data)
 	if(serializer.is_valid()):
 		serializer = serializer.validated_data

@@ -5,6 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/',include('back.urls')),
-    re_path(r'^(?P<short_url>[0-9A-Za-z]{7}/$)',include('back.urls')),
+    path('',include('back.urls')),
+    # re_path(r'^short/(?P<short_url>[0-9A-Za-z]{7}/$)',include('back.urls')),
+    path('', include('frontend.urls'))
 ]+ static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

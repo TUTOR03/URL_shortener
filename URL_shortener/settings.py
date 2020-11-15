@@ -23,9 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hwhbz$2#s@a1vanup88lh1)m5c)n+o02k6kv__e06e4vd6u3et'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','80.240.25.179']
+# ALLOWED_HOSTS = ['0.0.0.0','80.240.25.179']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -39,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'back'
+    'back',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -96,7 +98,7 @@ DATABASES = {
         'NAME': 'django_short_url',
         'USER': 'postgres',
         'PASSWORD': 'zo.h0906023',
-        'HOST': 'db',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
