@@ -1,21 +1,4 @@
 # URL_shortener
-<<<<<<< HEAD
-### This is an API for url shortener made with django rest framework. It allows you to track unique visits and get data for plotting
-## Instalation
-To use it, you just need to install `docker-compose`
-```bash
-pip install docker-compose
-```
-Before the start you also need to add `nginx.conf` to `nginx/sites-enabled`
-Then just run the following command:
-```bash
-docker-compose up -d --duild
-```
-To stop the server:
-```bash
-docker-compose down
-```
-=======
 ### This is URL shortener API build with django and rest-framework. It allows you to see unique visits and get data for building graphs.
 ### You can test it here [80.240.25.179:8000/api](http://80.240.25.179:8000/)
 ## Instalation
@@ -222,4 +205,3 @@ Get data for building graph based on the time period/
     ]
 ]
 ```
->>>>>>> 22a0db438f4bbb0a33e745305589179809b2909f
