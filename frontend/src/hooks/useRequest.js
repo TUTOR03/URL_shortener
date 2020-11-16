@@ -1,32 +1,33 @@
 import {useState, useCallback} from 'react'
 
-export const UseRequest = ()=>{
+export const useRequest = ()=>{
 	const [loading, setLoading] = useState(false)
-	const [error, setError] = useState(null)
+	const [error, setError] = useState(false)
 
-	const request = useCallback((url, method = 'GET', headers={}, body=null)=>{
+	const request = useCallback(async (url, method = 'GET', body=null, headers={})=>{
 		setLoading(true)
 		if(body){
 			body = JSON.stringify(body)
+			headers['Content-Type'] = 'application/json'
 		}
-		fetch(url,{method, headers, body})
-		.then(response =>{
+		try{
+			const response = await fetch(url, {method, body, headers})
 			if(response.ok){
-				return(response.json())
+				const responseData = await response.json()
+				setLoading(false)
+				return(responseData)
 			}
+			else{
+				setError(true)
+				setLoading(false)
+				throw new Error(responseData.error)
+			}
+		}
+		catch(error){
 			setError(true)
 			setLoading(false)
-		})
-		.then(responseData =>{
-			setLoading(false)
-			return(responseData)
-		})
-		.catch(new_error =>{
-			setError(true)
-			setLoading(false)
-			console.log(new_error)
-		})
-	return({request, loading, error})
-
+			throw error
+		}
 	},[])
+	return({request, loading, error, setError})
 }

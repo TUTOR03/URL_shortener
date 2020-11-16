@@ -66,7 +66,7 @@ ROOT_URLCONF = 'URL_shortener.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -145,3 +145,10 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 UNIQUE_VISIT_CALLDOWN = {
     'seconds':30
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'artemss20030906@gmail.com'
+EMAIL_HOST_PASSWORD = 'hbqgvdsqhvkuijuc'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
