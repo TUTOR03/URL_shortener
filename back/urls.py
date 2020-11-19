@@ -10,5 +10,6 @@ urlpatterns = [
 	path('api/list_url', views.ListURLAPIView.as_view(), name = 'URLList'),
 	path('api/list_url/<short_url>', views.SingleURLAPIView.as_view(), name = 'Update'),
 	path('api/list_url/<short_url>/graph/<int:days>', views.URLGraphAPIView, name = 'URLGraph'),
+	path('api/activate/<uidb64>/<token>', views.UserActivationAPIView, name = 'UserActivation'),
 	re_path(r'^ts-(?P<short_url>[0-9A-Za-z]{7}$)', views.URLRedirectAPIView, name = 'URLRedirect'),
 ]

@@ -154,11 +154,18 @@ def UserRegisterAPIView(request):
 @api_view(['POST'])
 @permission_classes([permissions.AllowAny])
 def UserActivationAPIView(request, uidb64, token):
-	print('GET Activate')
-	pass
+	uid = force_text(urlsafe_base64_decode(uidb64))
+	user = User.objects.filter(id = uid)
+	if(user.exists()):
+		user = user.first()
+		if(email_token_gen.check_token(user, token)):
+			user.is_active = True
+			user.save()
+			return Response({'message':'Thank you for your email confirmation. Now you can login your account'}, status = status.HTTP_200_OK)
+	return Response({'message':'Activation link is invalid'}, status = status.HTTP_404_NOT_FOUND)
 
 @api_view(['POST'])
 @permission_classes([permissions.IsAuthenticated])
 def UserLogoutAPIView(request):
 	Token.objects.get(user = request.user).delete()
-	return Response(status = status.HTTP_200_OK)	
+	return Response(status = status.HTTP_200_OK)
