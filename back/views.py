@@ -21,6 +21,7 @@ from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
+import threading
 
 class EmailTokenGenerator(PasswordResetTokenGenerator):
 	def _make_hash_value(self, user, timestamp):
@@ -145,11 +146,18 @@ def UserRegisterAPIView(request):
             'uidb64': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': email_token_gen.make_token(user),
 		})
-		mail_to_send = EmailMultiAlternatives(mail_subject, strip_tags(message), to=[data['email']])
-		mail_to_send.attach_alternative(message, 'text/html')
-		mail_to_send.send()
+		message_task = threading.Thread(target = async_email, args=( mail_subject, message, [data['email']] ))
+		message_task.start()
+		# mail_to_send = EmailMultiAlternatives(mail_subject, strip_tags(message), to=[data['email']])
+		# mail_to_send.attach_alternative(message, 'text/html')
+		# mail_to_send.send()
 		return Response({'ok':True},status = status.HTTP_200_OK)
 	return Response({'error':serializer.errors},status = status.HTTP_400_BAD_REQUEST)
+
+def async_email(mail_subject, message, to_email):
+	mail_to_send = EmailMultiAlternatives(mail_subject, strip_tags(message), to=to_email)
+	mail_to_send.attach_alternative(message, 'text/html')
+	mail_to_send.send()
 
 @api_view(['POST'])
 @permission_classes([permissions.AllowAny])
@@ -162,7 +170,7 @@ def UserActivationAPIView(request, uidb64, token):
 			user.is_active = True
 			user.save()
 			return Response({'message':'Thank you for your email confirmation. Now you can login your account'}, status = status.HTTP_200_OK)
-	return Response({'message':'Activation link is invalid'}, status = status.HTTP_404_NOT_FOUND)
+	return Response({'message':'Activation link is invalid'}, status = status.HTTP_200_OK)
 
 @api_view(['POST'])
 @permission_classes([permissions.IsAuthenticated])

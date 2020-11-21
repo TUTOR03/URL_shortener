@@ -24,9 +24,11 @@ export const Register = ()=>{
 	}
 	const handleFormSubmit = async (event)=>{
 		event.preventDefault()
-		// history.push('/rtrtrttr')
 		try{
 			await request('/api/register', 'POST', form)
+			if(!error){
+				history.push('/confirm_email')
+			}
 		}
 		catch(e){
 			//console.log(e)

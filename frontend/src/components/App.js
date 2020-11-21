@@ -5,6 +5,7 @@ import {NavBar} from './NavBar'
 import {Register} from './Register'
 import {Login} from './Login'
 import {ConfirmEmailAlert} from './ConfirmEmailAlert'
+import {ConfirmEmail} from './ConfirmEmail'
 
 const App = ()=>{
   return (
@@ -15,7 +16,7 @@ const App = ()=>{
     			<Route exact path='/register' component={Register}/>
     			<Route exact path='/login' component={Login}/>
                 <Route exact path='/confirm_email' component={ConfirmEmailAlert}/>
-                <Route exact path='/active/:uidb64/:token' component={ConfirmEmail}/>
+                <Route exact path='/activate/:uidb64/:token' component={ConfirmEmail}/>
     		</Switch>
     	</BrowserRouter>
     </AppProvider>
